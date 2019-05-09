@@ -13,3 +13,9 @@
 - TorusKnotBuffer (AmbientLight, SpotLight) — [Live preview](https://lab.corentinbernadou.co/work/2-lights/1-torusknotbuffer/index.html)
 - Box (DirectionalLight) — [Live preview](https://lab.corentinbernadou.co/work/2-lights/2-box/index.html)
 - TorusBuffer (AmbientLight, SpotLight) — [Live preview](https://lab.corentinbernadou.co/work/2-lights/3-torusbuffer/index.html)
+
+
+### 3 - Textures
+- Box (without bumpMap) — [Live preview](https://lab.corentinbernadou.co/work/3-textures/1-box/index.html)
+- Box (with bumpMap) — [Live preview](https://lab.corentinbernadou.co/work/3-textures/2-box/index.html)
+- TorusBuffer (with specular, shininess, map and bumpMap) — [Live preview](https://lab.corentinbernadou.co/work/3-textures/3-torusbuffer/index.html)
