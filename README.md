@@ -19,3 +19,5 @@
 - Box (without bumpMap) — [Live preview](https://lab.corentinbernadou.co/work/3-textures/1-box/index.html)
 - Box (with bumpMap) — [Live preview](https://lab.corentinbernadou.co/work/3-textures/2-box/index.html)
 - TorusBuffer (with specular, shininess, map and bumpMap) — [Live preview](https://lab.corentinbernadou.co/work/3-textures/3-torusbuffer/index.html)
+- SphereBuffer (with specular, shininess) — [Live preview](https://lab.corentinbernadou.co/work/3-textures/4-spherebuffer/index.html)
+- Box (with map.wrapS, map.wrapT, map.repeat.set) — [Live preview](https://lab.corentinbernadou.co/work/3-textures/5-box/index.html)
