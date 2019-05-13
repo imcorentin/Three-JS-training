@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>06 - Poly Chicken</title>
+    <link rel="stylesheet" href="../../dist/css/style.css">
+    <script src="../../dist/js/libs/three.min.js"></script>
+    <script src="../../dist/js/libs/stats.min.js"></script>
+    <script src="../../dist/js/libs/dat.gui.min.js"></script>
+    <script src="../../dist/js/libs/OrbitControls.js"></script>
+</head>
+
+<body>
+
+    <script>
+        function init() {
+            // Colors
+            const green = "#03ba9f";
+            const lightGreen = "#c3e8e0";
+
+            const red = "#E42C40";
+            const pink = "#fe405c";
+
+            const orange = "#E06E4B";
+
+            const black = "#000000";
+            const white = "#ffffff";
+
+
+            const height = window.innerHeight;
+            const width = window.innerWidth;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+            //camera.position.set(30, 0, 50);
+            camera.position.set(40, 30, 50);
+            camera.lookAt(scene.position);
+
+
+            function chicken() {
+                // Body
+                const bodyGeometry = new THREE.BoxGeometry(10, 20, 15);
+                const bodyMaterial = new THREE.MeshPhongMaterial({ color: white, wireframe: false });
+                const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+                scene.add(body);
+
+                // Eyes
+                // Left eye
+                const eyeLGeometry = new THREE.BoxGeometry(0, 2, 2);
+                const eyeLMaterial = new THREE.MeshPhongMaterial({ color: black });
+                const eyeL = new THREE.Mesh(eyeLGeometry, eyeLMaterial);
+                eyeL.position.set(5, 5, 3);
+                scene.add(eyeL);
+                // Right eye
+                const eyeRGeometry = new THREE.BoxGeometry(0, 2, 2);
+                const eyeRMaterial = new THREE.MeshPhongMaterial({ color: black });
+                const eyeR = new THREE.Mesh(eyeRGeometry, eyeRMaterial);
+                eyeR.position.set(-5, 5, 3);
+                scene.add(eyeR);
+
+                // Nose
+                const noseGeometry = new THREE.BoxGeometry(4, 4, 5);
+                const noseMaterial = new THREE.MeshPhongMaterial({ color: orange });
+                const nose = new THREE.Mesh(noseGeometry, noseMaterial);
+                nose.position.set(0, 4, 9)
+                scene.add(nose);
+
+                // Glottis
+                const glottisGeometry = new THREE.BoxGeometry(3, 3, 4);
+                const glottisMaterial = new THREE.MeshPhongMaterial({ color: red });
+                const glottis = new THREE.Mesh(glottisGeometry, glottisMaterial);
+                glottis.position.set(0, 1, 8)
+                scene.add(glottis);
+
+                // Ridge
+                const ridgeGeometry = new THREE.BoxGeometry(4, 2, 7);
+                const ridgeMaterial = new THREE.MeshPhongMaterial({ color: pink });
+                const ridge = new THREE.Mesh(ridgeGeometry, ridgeMaterial);
+                ridge.position.set(0, 11, 0)
+                scene.add(ridge);
+
+
+                // Wings
+                // Wing Left
+                const wingLGeometry = new THREE.BoxGeometry(2, 5, 10);
+                const wingLMaterial = new THREE.MeshPhongMaterial({ color: white });
+                const wingL = new THREE.Mesh(wingLGeometry, wingLMaterial);
+                wingL.position.set(6, -3, 0)
+                scene.add(wingL);
+                // Wing Right
+                const wingRGeometry = new THREE.BoxGeometry(2, 5, 10);
+                const wingRMaterial = new THREE.MeshPhongMaterial({ color: white });
+                const wingR = new THREE.Mesh(wingRGeometry, wingRMaterial);
+                wingR.position.set(-6, -3, 0)
+                scene.add(wingR);
+
+
+                // Rear
+                // Big rear
+                const bigRearGeometry = new THREE.BoxGeometry(7, 7, 3);
+                const bigRearMaterial = new THREE.MeshPhongMaterial({ color: white });
+                const bigRear = new THREE.Mesh(bigRearGeometry, bigRearMaterial);
+                bigRear.position.set(0, -3, -9);
+                scene.add(bigRear);
+                // Small rear
+                const smallRearGeometry = new THREE.BoxGeometry(3, 3, 2);
+                const smallRearMaterial = new THREE.MeshPhongMaterial({ color: white });
+                const smallRear = new THREE.Mesh(smallRearGeometry, smallRearMaterial);
+                smallRear.position.set(0, -3, -11);
+                scene.add(smallRear);
+
+
+                // Paws
+                // Paw left
+                const pawLGeometry = new THREE.CylinderBufferGeometry(1, 1, 5, 30);
+                const pawLMaterial = new THREE.MeshPhongMaterial({ color: orange });
+                const pawL = new THREE.Mesh(pawLGeometry, pawLMaterial);
+                pawL.position.set(3, -12, 0);
+                scene.add(pawL);
+                // Paw right
+                const pawRGeometry = new THREE.CylinderBufferGeometry(1, 1, 5, 30);
+                const pawRMaterial = new THREE.MeshPhongMaterial({ color: orange });
+                const pawR = new THREE.Mesh(pawRGeometry, pawRMaterial);
+                pawR.position.set(-3, -12, 0);
+                scene.add(pawR);
+
+
+                // Feet
+                // Foot right
+                const footRGeometry = new THREE.BoxGeometry(4, 0, 4);
+                const footRMaterial = new THREE.MeshPhongMaterial({ color: orange });
+                const footR = new THREE.Mesh(footRGeometry, footRMaterial);
+                footR.position.set(3, -15, 0);
+                scene.add(footR);
+                // Toe Right
+                const footRtoeRGeometry = new THREE.BoxGeometry(1.5, 1, 1);
+                const footRtoeRMaterial = new THREE.MeshPhongMaterial({ color: orange });
+                const footRtoeR = new THREE.Mesh(footRtoeRGeometry, footRtoeRMaterial);
+                footRtoeR.position.set(4.3, -15, 2.5);
+                scene.add(footRtoeR);
+                // Toe Left
+                const footRtoeLGeometry = new THREE.BoxGeometry(1.5, 1, 1);
+                const footRtoeLMaterial = new THREE.MeshPhongMaterial({ color: orange });
+                const footRtoeL = new THREE.Mesh(footRtoeLGeometry, footRtoeLMaterial);
+                footRtoeL.position.set(1.7, -15, 2.5);
+                scene.add(footRtoeL);
+
+
+                // Foot left
+                const footLGeometry = new THREE.BoxGeometry(4, 0, 4);
+                const footLMaterial = new THREE.MeshPhongMaterial({ color: orange });
+                const footL = new THREE.Mesh(footLGeometry, footLMaterial);
+                footL.position.set(-3, -15, 0);
+                scene.add(footL);
+                // Toe Right
+                const footLtoeRGeometry = new THREE.BoxGeometry(1.5, 1, 1);
+                const footLtoeRMaterial = new THREE.MeshPhongMaterial({ color: orange });
+                const footLtoeR = new THREE.Mesh(footLtoeRGeometry, footLtoeRMaterial);
+                footLtoeR.position.set(-4.3, -15, 2.5);
+                scene.add(footLtoeR);
+                // Toe Left
+                const footLtoeLGeometry = new THREE.BoxGeometry(1.5, 1, 1);
+                const footLtoeLMaterial = new THREE.MeshPhongMaterial({ color: orange });
+                const footLtoeL = new THREE.Mesh(footLtoeLGeometry, footLtoeLMaterial);
+                footLtoeL.position.set(-1.7, -15, 2.5);
+                scene.add(footLtoeL);
+            }
+            chicken();
+
+
+            const light = new THREE.HemisphereLight(white, lightGreen, 1);
+            light.position.set(0, 10, 0);
+            light.castShadow = true;
+            scene.add(light);
+
+
+            const renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setClearColor(green, 1.0);
+            renderer.setSize(width, height);
+
+            const controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+            document.body.appendChild(renderer.domElement);
+            window.onresize = () => {
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                let aspectRatio = window.innerWidth / window.innerHeight;
+                camera.aspect = aspectRatio;
+                camera.updateProjectionMatrix();
+            }
+
+            const render = () => {
+                renderer.render(scene, camera);
+                requestAnimationFrame(render);
+            }
+            render();
+        }
+
+        window.onload = init();
+
+    </script>
+</body>
+
+</html>
